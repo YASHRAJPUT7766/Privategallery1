@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir -p /tmp/wrapper-gen
           cd /tmp/wrapper-gen
+          echo "rootProject.name = \"wrapper-gen\"" > settings.gradle.kts
           gradle wrapper --gradle-version 8.7 --distribution-type all
           cp -r gradle "$GITHUB_WORKSPACE/"
           cp gradlew "$GITHUB_WORKSPACE/"
