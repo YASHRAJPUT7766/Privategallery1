@@ -17,7 +17,7 @@ import com.yash.privategallery.data.database.entity.TrashEntity
  * database only stores app-specific overlay metadata, never duplicating the
  * full public gallery.
  *
- * Physically separate .db file from [com.yash.privategallery.data.private.PrivateDatabase]
+ * Physically separate .db file from [com.yash.privategallery.data.vault.PrivateDatabase]
  * (Section 41: "Private metadata should be isolated from normal gallery metadata").
  */
 @Database(
