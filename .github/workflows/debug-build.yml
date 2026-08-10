@@ -19,10 +19,6 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # Wrapper files (gradlew, gradlew.bat, gradle-wrapper.jar/properties) are
-      # missing from this project. Instead of committing them, we generate them
-      # fresh every run using a system-installed Gradle that matches the AGP 8.5.2
-      # requirement, then use that wrapper for the actual build.
       - name: Set up system Gradle (to generate wrapper)
         uses: gradle/actions/setup-gradle@v3
         with:
@@ -32,6 +28,7 @@ jobs:
         run: |
           mkdir -p /tmp/wrapper-gen
           cd /tmp/wrapper-gen
+          echo "rootProject.name = \"wrapper-gen\"" > settings.gradle.kts
           gradle wrapper --gradle-version 8.7 --distribution-type all
           cp -r gradle "$GITHUB_WORKSPACE/"
           cp gradlew "$GITHUB_WORKSPACE/"
