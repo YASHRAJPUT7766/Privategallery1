@@ -69,7 +69,7 @@ fun SearchScreen(
                 horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
                 contentPadding = PaddingValues(horizontal = 8.dp)
             ) {
-                items(SearchFilter.entries) { filter ->
+                items(SearchFilter.entries.toList()) { filter ->
                     FilterChip(
                         selected = uiState.activeFilter == filter,
                         onClick = { viewModel.onFilterChanged(filter) },
