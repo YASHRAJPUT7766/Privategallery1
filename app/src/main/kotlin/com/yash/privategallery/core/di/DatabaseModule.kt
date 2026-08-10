@@ -3,7 +3,7 @@ package com.yash.privategallery.core.di
 import android.content.Context
 import androidx.room.Room
 import com.yash.privategallery.data.database.AppDatabase
-import com.yash.privategallery.data.private.PrivateDatabase
+import com.yash.privategallery.data.vault.PrivateDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
