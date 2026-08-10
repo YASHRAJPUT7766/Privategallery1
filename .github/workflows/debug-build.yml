@@ -29,7 +29,13 @@ jobs:
           gradle-version: '8.7'
 
       - name: Generate Gradle wrapper
-        run: gradle wrapper --gradle-version 8.7 --distribution-type all
+        run: |
+          mkdir -p /tmp/wrapper-gen
+          cd /tmp/wrapper-gen
+          gradle wrapper --gradle-version 8.7 --distribution-type all
+          cp -r gradle "$GITHUB_WORKSPACE/"
+          cp gradlew "$GITHUB_WORKSPACE/"
+          cp gradlew.bat "$GITHUB_WORKSPACE/"
 
       - name: Grant execute permission to gradlew
         run: chmod +x gradlew
