@@ -32,7 +32,6 @@ jobs:
         run: |
           mkdir -p /tmp/wrapper-gen
           cd /tmp/wrapper-gen
-          echo "rootProject.name = \"wrapper-gen\"" > settings.gradle.kts
           gradle wrapper --gradle-version 8.7 --distribution-type all
           cp -r gradle "$GITHUB_WORKSPACE/"
           cp gradlew "$GITHUB_WORKSPACE/"
@@ -42,7 +41,18 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: |
+          for attempt in 1 2 3; do
+            echo "=== Build attempt $attempt ==="
+            if ./gradlew assembleDebug --stacktrace --no-daemon; then
+              echo "Build succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Attempt $attempt failed, retrying in 15s..."
+            sleep 15
+          done
+          echo "All attempts failed"
+          exit 1
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
