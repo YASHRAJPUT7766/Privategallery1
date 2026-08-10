@@ -65,7 +65,7 @@ class AlbumRepositoryImpl @Inject constructor(
             }
         }
 
-    private fun buildDefaultAlbums(favoriteIds: List<Long>): List<Album> {
+    private suspend fun buildDefaultAlbums(favoriteIds: List<Long>): List<Album> {
         val allMedia = mediaStoreDataSource.queryMedia()
         return buildList {
             add(computedAlbum(AlbumKind.ALL_IMAGES, "All Images", allMedia))
