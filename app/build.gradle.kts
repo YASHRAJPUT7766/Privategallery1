@@ -63,6 +63,14 @@ kotlin {
     sourceSets.all {
         languageSettings.optIn("kotlin.RequiresOptIn")
     }
+    compilerOptions {
+        freeCompilerArgs.addAll(
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+            "-opt-in=androidx.compose.animation.ExperimentalAnimationApi",
+            "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+        )
+    }
 }
 
 dependencies {
