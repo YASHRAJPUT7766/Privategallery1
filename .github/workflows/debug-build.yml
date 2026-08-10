@@ -1,0 +1,45 @@
+name: Debug Build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Wrapper files (gradlew, gradlew.bat, gradle-wrapper.jar/properties) are
+      # missing from this project. Instead of committing them, we generate them
+      # fresh every run using a system-installed Gradle that matches the AGP 8.5.2
+      # requirement, then use that wrapper for the actual build.
+      - name: Set up system Gradle (to generate wrapper)
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Generate Gradle wrapper
+        run: gradle wrapper --gradle-version 8.7 --distribution-type all
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PrivateGallery-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
