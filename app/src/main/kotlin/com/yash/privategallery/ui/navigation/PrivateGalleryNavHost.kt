@@ -35,9 +35,9 @@ import com.yash.privategallery.ui.search.SearchScreen
 import com.yash.privategallery.ui.albums.AlbumDetailScreen
 import com.yash.privategallery.ui.albums.AlbumLockScreen
 import com.yash.privategallery.ui.albums.AlbumsScreen
-import com.yash.privategallery.ui.private.PrivateAlbumDetailScreen
-import com.yash.privategallery.ui.private.PrivateAlbumsScreen
-import com.yash.privategallery.ui.private.PrivateGalleryScreen
+import com.yash.privategallery.ui.vault.PrivateAlbumDetailScreen
+import com.yash.privategallery.ui.vault.PrivateAlbumsScreen
+import com.yash.privategallery.ui.vault.PrivateGalleryScreen
 import com.yash.privategallery.ui.search.PrivateSearchScreen
 import com.yash.privategallery.ui.video.VideoPlayerScreen
 import com.yash.privategallery.ui.viewer.ImageViewerScreen
