@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Section 50: request only what's actually required, using modern granular media
+         permissions (Android 13+ / API 33). READ_MEDIA_VISUAL_USER_SELECTED supports the
+         "partial access" flow where the user grants only some items. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+
+    <!-- Needed only to actually delete/modify MediaStore entries that belong to other apps
+         when moving media into/out of the private vault (Sections 21, 23, 57). -->
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+
+    <!-- Biometric auth (Section 3, 4). Not required at install: app degrades to PIN/password
+         if no biometric hardware is present, so this feature is NOT marked android:required="true". -->
+    <uses-feature
+        android:name="android.hardware.fingerprint"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.biometrics"
+        android:required="false" />
+
+    <application
+        android:name=".PrivateGalleryApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PrivateGallery"
+        tools:targetApi="34">
+
+        <!--
+            Section 53 (Backup): allowBackup is explicitly false and fullBackupContent is
+            disabled at the application level. This guarantees Android's auto-backup system
+            never captures the private encrypted vault directory, even accidentally. See
+            data_extraction_rules.xml for the (empty/exclude-all) rule set backing this up.
+        -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.PrivateGallery.Splash"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            Section 30 (Sharing): a FileProvider is required to hand a temporary, scoped URI
+            to the Android Sharesheet for private media exports, instead of ever exposing a
+            raw file:// path to private storage. Paths are defined in file_paths.xml and are
+            scoped ONLY to a cache subdirectory used for ephemeral share exports (Section 52).
+        -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.yash.privategallery.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

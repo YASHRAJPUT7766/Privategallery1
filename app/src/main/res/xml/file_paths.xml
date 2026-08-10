@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Section 30 (Sharing) + Section 52 (Security): this path set is deliberately narrow.
+    Only app-private cache/share_exports is exposed via FileProvider — never the private
+    vault directory itself, and never external/public storage. Files placed here are
+    ephemeral, created fresh for a single share action, and cleaned up after use
+    (see core/storage/ShareExportManager).
+-->
+<paths>
+    <cache-path name="share_exports" path="share_exports/" />
+</paths>

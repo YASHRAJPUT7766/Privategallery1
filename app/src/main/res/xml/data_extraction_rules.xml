@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Section 53: Backup Considerations.
+    android:allowBackup="false" on the <application> tag already disables Android's classic
+    auto-backup entirely. This file additionally documents/enforces the exclusion under the
+    newer Android 12+ data extraction rules (device transfer + cloud backup), so that if
+    allowBackup is ever flipped back on during future development, the private vault and
+    security key material are STILL never included by default.
+-->
+<data-extraction-rules>
+    <cloud-backup disableIfNoEncryptionCapability="true">
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="file" path="private_vault/" />
+        <exclude domain="file" path="private_thumbs/" />
+        <exclude domain="root" path="app_private_vault/" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="file" path="private_vault/" />
+        <exclude domain="file" path="private_thumbs/" />
+        <exclude domain="root" path="app_private_vault/" />
+    </device-transfer>
+</data-extraction-rules>

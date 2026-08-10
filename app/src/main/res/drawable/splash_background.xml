@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Section 1: clean splash screen background. Kept as a simple solid layer; the
+     logo itself is rendered by Compose immediately after attach for animation control. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/black" />
+</layer-list>

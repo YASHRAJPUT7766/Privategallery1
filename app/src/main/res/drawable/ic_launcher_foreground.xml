@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Placeholder launcher glyph: a simple layered-photos mark in the app's
+     primary color. Swap for real brand artwork before release — this exists
+     only so the project has a valid, buildable icon resource. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#3A5CE0"
+        android:pathData="M30,38 L78,38 A6,6 0 0 1 84,44 L84,74 A6,6 0 0 1 78,80 L30,80 A6,6 0 0 1 24,74 L24,44 A6,6 0 0 1 30,38 Z" />
+    <path
+        android:fillColor="#B4C4FF"
+        android:pathData="M40,66 L50,54 L58,62 L66,52 L78,66 L78,74 A2,2 0 0 1 76,76 L32,76 A2,2 0 0 1 30,74 L30,68 Z" />
+    <path
+        android:fillColor="#B4C4FF"
+        android:pathData="M64,46 m-5,0 a5,5 0 1 1 10,0 a5,5 0 1 1 -10,0" />
+</vector>

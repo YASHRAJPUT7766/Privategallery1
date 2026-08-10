@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Private Gallery</string>
+
+    <!-- Section 54: First-launch experience copy -->
+    <string name="welcome_title">Welcome to Private Gallery</string>
+    <string name="welcome_subtitle">One gallery. Two spaces. Normal + completely private.</string>
+    <string name="permission_rationale_title">Access your photos and videos</string>
+    <string name="permission_rationale_body">Private Gallery needs access to your media to display, organize, and let you optionally move items into an encrypted private space. Nothing leaves your device.</string>
+
+    <!-- Section 55: Empty states -->
+    <string name="empty_photos">No photos found on your device.</string>
+    <string name="empty_favorites">Photos you favorite will appear here.</string>
+    <string name="empty_private">Your private space is ready.</string>
+    <string name="empty_albums">Create your first album.</string>
+    <string name="empty_trash">Trash is empty.</string>
+</resources>

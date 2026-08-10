@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+        The real theming (Light/Dark/System/Dynamic — Section 36) lives in Compose
+        (ui/theme/Theme.kt) via Material 3's MaterialTheme + dynamicColorScheme APIs.
+        These XML themes exist only for the pre-Compose window (splash + base activity
+        chrome) since Compose needs an underlying platform theme to attach to.
+    -->
+    <style name="Theme.PrivateGallery" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <!-- Section 1/54: dedicated splash theme shown before Compose content attaches -->
+    <style name="Theme.PrivateGallery.Splash" parent="Theme.PrivateGallery">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+</resources>
