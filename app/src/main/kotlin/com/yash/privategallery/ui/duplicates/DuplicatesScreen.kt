@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -71,7 +73,7 @@ fun DuplicatesScreen(
             }
             uiState.groups.isEmpty() -> EmptyState(message = "No duplicates found.", modifier = Modifier.padding(paddingValues))
             else -> LazyColumn(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
-                androidx.compose.foundation.lazy.items(uiState.groups) { group ->
+                items(uiState.groups) { group ->
                     DuplicateGroupCard(
                         group = group,
                         selectedIds = uiState.selectedForDeletion,
@@ -122,7 +124,7 @@ private fun DuplicateGroupCard(
                 modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 userScrollEnabled = false
             ) {
-                androidx.compose.foundation.lazy.grid.items(group.items, key = { it.id }) { item ->
+                items(group.items, key = { it.id }) { item ->
                     MediaThumbnail(
                         item = item,
                         isSelected = item.id in selectedIds,
